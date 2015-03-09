@@ -6,13 +6,13 @@ var Slack = require('slack-client');
 
 try{
   var config = require("./config");
+  var slack = new Slack(config.SLACK_KEY, true, true);
 }catch(e){
-  var config = JSON.parse(process.env.BOT_CONFIG);
+  var slack = new Slack(process.env.SLACK_KEY, true, true);
 }
 
 var bot = require("./bot")();
 
-var slack = new Slack(config.SLACK_KEY, true, true);
 var slackReady = false;
 
 slack.on('open', function() {
